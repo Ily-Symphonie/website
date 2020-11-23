@@ -1,3 +1,7 @@
 nav{
   background-color: #03223d;
 }
+
+th {
+    cursor: pointer;
+}
