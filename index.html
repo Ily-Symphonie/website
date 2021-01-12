@@ -769,43 +769,52 @@
 </div>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         $('.modal').modal();
         $('#modal1').modal('open');
 
-      function SearchTable() {
-        $("#input1, #input2, #input3, #input4, #input5, #input6, #input7, #input8, #input9, #input10, #input11, #input12, #input13, #input14, #input15, #input16, #input17, #input18, #input19").on("keyup", function() {
-          var value = this.value.trim().toLowerCase();
-          var $table = $("#"+ this.getAttribute('data-target'));
+        function SearchTable() {
+            $("#input1, #input2, #input3, #input4, #input5, #input6, #input7, #input8, #input9, #input10, #input11, #input12, #input13, #input14, #input15, #input16, #input17, #input18, #input19").on("keyup", function() {
+                var value = this.value.trim().toLowerCase();
+                var $table = $("#" + this.getAttribute('data-target'));
 
-          $table.find('tr').show();
+                $table.find('tr').show();
 
-          if (value) {
-            $table.find('tr').filter(function(){
-              return this.innerText.toLowerCase().indexOf(value) < 0;
-            }).hide();
-          }
-        });
-      }
+                if (value) {
+                    $table.find('tr').filter(function() {
+                        return this.innerText.toLowerCase().indexOf(value) < 0;
+                    }).hide();
+                }
+            });
+        }
 
-      SearchTable();
+        SearchTable();
 
     });
 
-    $('th').click(function(){
+    $('th').click(function() {
         var table = $(this).parents('table').eq(0)
         var rows = table.find('tr:gt(0)').toArray().sort(compare($(this).index()))
         this.asc = !this.asc
-        if (!this.asc){rows = rows.reverse()}
-        for (var i = 0; i < rows.length; i++){table.append(rows[i])}
+        if (!this.asc) {
+            rows = rows.reverse()
+        }
+        for (var i = 0; i < rows.length; i++) {
+            table.append(rows[i])
+        }
     })
+
     function compare(index) {
         return function(a, b) {
-            var valA = getCellValue(a, index), valB = getCellValue(b, index)
+            var valA = getCellValue(a, index),
+                valB = getCellValue(b, index)
             return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
         }
     }
-    function getCellValue(row, index){ return $(row).children('td').eq(index).text() }
+
+    function getCellValue(row, index) {
+        return $(row).children('td').eq(index).text()
+    }
 </script>
 
 </body>
